@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concilia.Já | Guilherme Silva de Lira</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#2563EB', // Tech Blue
+                            green: '#10B981', // Success Emerald
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS for Animations & Glassmorphism -->
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dark .glass {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .light .glass {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Fade Up Animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Delay utility for staggered animations */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-50 font-sans transition-colors duration-300 antialiased selection:bg-brand-blue selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 glass border-b border-slate-200 dark:border-slate-800" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            <div class="flex justify-between items-center h-20">
+                <!-- Back to Portfolio -->
+                <a href="index.html" class="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors group">
+                    <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i> Voltar ao Portfólio
+                </a>
+
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle Dark Mode">
+                        <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-slate-400 hover:text-white"></i>
+                        <i data-lucide="moon" class="w-5 h-5 block dark:hidden text-slate-600 hover:text-slate-900"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-20">
+        <!-- Project Hero -->
+        <section class="relative pt-12 pb-16 lg:pt-20 lg:pb-24 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-brand-blue/10 blur-[120px]"></div>
+                <div class="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-brand-green/10 blur-[120px]"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+                <div class="max-w-3xl mx-auto text-center fade-up">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-blue/10 text-brand-blue text-sm font-medium mb-6">
+                        <i data-lucide="bar-chart" class="w-4 h-4"></i>
+                        <span>Estudo de Caso / Ferramenta</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
+                        Concilia.<span class="text-brand-blue">Já</span>
+                    </h1>
+                    <p class="text-xl text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                        Plataforma de Auditoria, Conciliação Financeira & Inteligência EDI.
+                    </p>
+                    <p class="text-lg text-slate-500 dark:text-slate-500 max-w-2xl mx-auto leading-relaxed">
+                        Solução avançada de Business Intelligence, projetada para lidar com grandes volumes de dados de adquirentes de cartões e extratos bancários, realizando validação e auditoria financeira de maneira automatizada e performática.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Objetivo -->
+        <section class="py-16 bg-slate-100/50 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="fade-up">
+                        <h2 class="text-3xl font-bold tracking-tight mb-6 flex items-center gap-3">
+                            <i data-lucide="target" class="w-8 h-8 text-brand-blue"></i> Objetivo do Projeto
+                        </h2>
+                        <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Centralizar, padronizar e auditar todo o fluxo financeiro de vendas e pagamentos originados por múltiplos canais e adquirentes. A plataforma cruza informações de vendas reportadas por APIs transacionais, registros operacionais de adquirentes e extratos bancários reais, identificando com precisão qualquer divergência de centavos, depósitos pendentes ou tarifas cobradas acima do contratado.
+                        </p>
+                    </div>
+                    <div class="fade-up delay-100 glass rounded-2xl p-8 border-l-4 border-l-brand-blue">
+                        <h3 class="text-xl font-semibold mb-4">Experiência do Usuário (Design Adaptativo)</h3>
+                        <ul class="space-y-4 text-slate-600 dark:text-slate-400">
+                            <li class="flex gap-3">
+                                <i data-lucide="layout" class="w-5 h-5 text-brand-blue shrink-0 mt-1"></i>
+                                <span><strong>Consciência de Canal (Acquirer-Aware UI):</strong> O ecossistema reage dinamicamente conforme a operadora. Termos contratuais e tarifas se alteram de forma fluida para refletir a linguagem própria da adquirente (Fiserv, Adiq, etc.).</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i data-lucide="zap" class="w-5 h-5 text-brand-blue shrink-0 mt-1"></i>
+                                <span><strong>Interface Dinâmica:</strong> Renderizações reativas e modulares baseadas em componentes flexíveis, reduzindo a latência de rede.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Funcionalidades & Screenshots -->
+        <section class="py-20">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+                <div class="text-center mb-16 fade-up">
+                    <h2 class="text-3xl font-bold tracking-tight mb-4">Funcionalidades Principais</h2>
+                    <p class="text-slate-600 dark:text-slate-400">Visão detalhada dos módulos que compõem a plataforma.</p>
+                </div>
+
+                <div class="space-y-24">
+                    <!-- Feature 1 -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center fade-up">
+                        <div class="order-2 lg:order-1 relative group">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-brand-blue to-brand-green rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+                            <!-- PLACEHOLDER IMAGEM 1 -->
+                            <div class="relative bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden aspect-video flex items-center justify-center border border-slate-300 dark:border-slate-700">
+                                <img src="assets/images/dashboard-executivo.png" alt="Dashboard Executivo" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/800x450/1e293b/475569?text=Dashboard+Executivo\n(Substituir+imagem+em+assets/images/dashboard-executivo.png)'">
+                            </div>
+                        </div>
+                        <div class="order-1 lg:order-2">
+                            <h3 class="text-2xl font-bold mb-4">1. Dashboard Executivo (Home Executiva)</h3>
+                            <p class="text-slate-600 dark:text-slate-400 mb-6">Painel estratégico de alta gestão que consolida indicadores de faturamento (TPV), projeções de fluxo de caixa futuro, riscos operacionais e comparativos de desempenho.</p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0"></i>
+                                    <div><strong>Visão Consolidada:</strong> TPV Projetado, Exposição em Aberto, Taxa Efetiva de Custo, Reconciled Rate e Share de Antecipação.</div>
+                                </li>
+                                <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0"></i>
+                                    <div><strong>Projeção de Fluxo de Caixa:</strong> Liquidações esperadas vs Recebimentos realizados.</div>
+                                </li>
+                                <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0"></i>
+                                    <div><strong>Aging de Recebíveis & Risco:</strong> Detalhamento do estoque por faixas de atraso e vencimento.</div>
+                                </li>
+                                <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0"></i>
+                                    <div><strong>Comparativo & Market Share:</strong> Visão comparativa entre adquirentes (ex: Fiserv vs. Adiq).</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center fade-up delay-100">
+                        <div class="order-1">
+                            <h3 class="text-2xl font-bold mb-4">2. Auditoria de Vendas (Dashboard de Conciliação)</h3>
+                            <p class="text-slate-600 dark:text-slate-400 mb-6">Interface gerencial para avaliar a integridade financeira das transações de vendas com cartões, oferecendo KPIs de controle precisos.</p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-blue shrink-0"></i>
+                                    <div><strong>Total Bruto e Líquido:</strong> Projeção financeira subtraindo o MDR.</div>
+                                </li>
+                                <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-blue shrink-0"></i>
+                                    <div><strong>Status Inteligente:</strong> Classificação por "Conciliado", "Em Aberto", "Divergente" e "Cancelado".</div>
+                                </li>
+                                <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-blue shrink-0"></i>
+                                    <div><strong>Identificação de Gaps:</strong> Payout identificado abaixo do projetado ("Pago a menor").</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="order-2 relative group">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-brand-blue to-purple-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+                            <!-- PLACEHOLDER IMAGEM 2 -->
+                            <div class="relative bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden aspect-video flex items-center justify-center border border-slate-300 dark:border-slate-700">
+                                <img src="assets/images/dashboard-vendas.png" alt="Dashboard de Vendas" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/800x450/1e293b/475569?text=Dashboard+de+Vendas\n(Substituir+imagem+em+assets/images/dashboard-vendas.png)'">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="grid lg:grid-cols-2 gap-12 items-center fade-up delay-100">
+                        <div class="order-2 lg:order-1 relative group">
+                            <div class="absolute -inset-1 bg-gradient-to-r from-brand-blue to-brand-green rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+                            <!-- PLACEHOLDER IMAGEM 3 -->
+                            <div class="relative bg-slate-200 dark:bg-slate-800 rounded-xl overflow-hidden aspect-video flex items-center justify-center border border-slate-300 dark:border-slate-700">
+                                <img src="assets/images/conciliacao-bancaria.png" alt="Conciliação Bancária" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/800x450/1e293b/475569?text=Conciliacao+Bancaria\n(Substituir+imagem+em+assets/images/conciliacao-bancaria.png)'">
+                            </div>
+                        </div>
+                        <div class="order-1 lg:order-2">
+                            <h3 class="text-2xl font-bold mb-4">3. Conciliação Bancária Automatizada</h3>
+                            <p class="text-slate-600 dark:text-slate-400 mb-6">Módulo de auditoria de conta corrente que confronta dados operacionais com a realidade bancária através de batimento automático (Reconciliation Match).</p>
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0"></i>
+                                    <div><strong>Batimento Automático:</strong> Algoritmo cruzando data e valor de repasse projetado com lançamentos de crédito no extrato.</div>
+                                </li>
+                                <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300">
+                                    <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-green shrink-0"></i>
+                                    <div><strong>Contas Multipróprias:</strong> Suporte nativo a múltiplos bancos e intermediários financeiros no mesmo ambiente.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Feature 4 & 5 (Grid) -->
+                    <div class="grid md:grid-cols-2 gap-8 fade-up delay-200">
+                        <div class="glass p-8 rounded-2xl border-t-2 border-brand-blue">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i data-lucide="pie-chart" class="w-6 h-6 text-brand-blue"></i>
+                                <h3 class="text-xl font-bold">4. Auditoria de Custos</h3>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Certifica que a adquirente cobra as tarifas acordadas em contrato. Agrupamento por bandeira e faixa de parcelamento.</p>
+                            <ul class="text-sm space-y-2 text-slate-700 dark:text-slate-300">
+                                <li><strong>MDR:</strong> Taxa administrativa padrão.</li>
+                                <li><strong>Antecipação:</strong> Custo de recebíveis líquidos.</li>
+                                <li><strong>CET:</strong> Custo Efetivo Total acumulado.</li>
+                            </ul>
+                            <!-- PLACEHOLDER IMAGEM 4 -->
+                            <div class="mt-6 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+                                 <img src="assets/images/mapa-custos.png" alt="Mapa de Custos" class="w-full object-cover" onerror="this.src='https://placehold.co/600x300/1e293b/475569?text=Mapa+Custos'">
+                            </div>
+                        </div>
+
+                        <div class="glass p-8 rounded-2xl border-t-2 border-brand-green">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i data-lucide="alert-triangle" class="w-6 h-6 text-brand-green"></i>
+                                <h3 class="text-xl font-bold">5. Rastreamento de Ajustes</h3>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Transparência de eventos financeiros que alteram o saldo líquido (Chargebacks, Débitos Operacionais, Bonificações).</p>
+                            <ul class="text-sm space-y-2 text-slate-700 dark:text-slate-300">
+                                <li><strong>Chargebacks:</strong> Vendas contestadas.</li>
+                                <li><strong>Ajustes de Débito:</strong> Aluguel POS, multas.</li>
+                                <li><strong>Ajustes de Crédito:</strong> Devoluções indevidas.</li>
+                            </ul>
+                             <!-- PLACEHOLDER IMAGEM 5 -->
+                             <div class="mt-6 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+                                <img src="assets/images/mapa-ajustes.png" alt="Mapa de Ajustes" class="w-full object-cover" onerror="this.src='https://placehold.co/600x300/1e293b/475569?text=Mapa+Ajustes'">
+                           </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 6 -->
+                    <div class="glass p-8 rounded-2xl fade-up">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="history" class="w-6 h-6 text-purple-500"></i>
+                            <h3 class="text-xl font-bold">6. Posição Congelada (Snapshot)</h3>
+                        </div>
+                        <p class="text-slate-600 dark:text-slate-400 mb-4">Capacidade de "congelar" a base histórica para avaliar o estoque de recebíveis em datas retroativas, vital para a auditoria contábil e prevenção de inadimplência em vendas em aberto.</p>
+                        <!-- PLACEHOLDER IMAGEM 6 -->
+                        <div class="mt-6 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700 aspect-video md:aspect-[21/9]">
+                            <img src="assets/images/posicao-congelada.png" alt="Posição Congelada" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/1200x500/1e293b/475569?text=Posicao+Congelada'">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Arquitetura & Integrações -->
+        <section class="py-20 bg-slate-900 text-slate-50 border-t border-slate-800">
+            <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+                <div class="text-center mb-16 fade-up">
+                    <h2 class="text-3xl font-bold tracking-tight mb-4 text-white">Engenharia de Alta Performance & Integrações</h2>
+                    <p class="text-slate-400">Desenvolvido com uma arquitetura moderna focada em grandes volumes de dados.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Tech Stack & Engine -->
+                    <div class="space-y-6 fade-up delay-100">
+                        <h3 class="text-2xl font-bold flex items-center gap-3"><i data-lucide="server" class="w-6 h-6 text-brand-blue"></i> Stack & Infraestrutura</h3>
+                        
+                        <div class="glass p-6 rounded-xl border border-slate-700">
+                            <h4 class="font-semibold text-brand-green mb-2">Motor de Consulta Ultra Rápido (Polars & Parquet)</h4>
+                            <p class="text-sm text-slate-400 mb-4">Conversão de dados sob demanda em formato columnar aberto (Apache Parquet). Consultas milionárias executadas instantaneamente na memória usando Polars.</p>
+                            
+                            <h4 class="font-semibold text-brand-green mb-2">Cache Auto-Healing</h4>
+                            <p class="text-sm text-slate-400 mb-4">Sincronismo transparente com MySQL. Invalidação de partições e reconstrução de cache em background.</p>
+
+                            <h4 class="font-semibold text-brand-green mb-2">Cloud Modular (AWS)</h4>
+                            <p class="text-sm text-slate-400">Deploy dinâmico via K8s, armazenamento em volumes EBS/S3, gerenciamento de banco via RDS e filas rápidas no Redis.</p>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs font-medium text-slate-300">Python 3.11+</span>
+                            <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs font-medium text-slate-300">Polars</span>
+                            <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs font-medium text-slate-300">Apache Parquet</span>
+                            <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs font-medium text-slate-300">MySQL Dual-Instance</span>
+                            <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs font-medium text-slate-300">Redis</span>
+                            <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs font-medium text-slate-300">Alpine.js</span>
+                            <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs font-medium text-slate-300">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs font-medium text-slate-300">Flask</span>
+                        </div>
+                    </div>
+
+                    <!-- Integrações -->
+                    <div class="space-y-6 fade-up delay-200">
+                        <h3 class="text-2xl font-bold flex items-center gap-3"><i data-lucide="plug" class="w-6 h-6 text-brand-blue"></i> Integrações Suportadas</h3>
+                        <p class="text-slate-400 mb-6">Operando com adaptadores universais mapeados para as principais entidades do mercado.</p>
+                        
+                        <div class="space-y-4">
+                            <div class="glass p-5 rounded-xl border-l-2 border-l-brand-blue border-r border-y border-r-slate-700 border-y-slate-700">
+                                <h4 class="font-semibold text-white">Adquirentes e Redes de Captura</h4>
+                                <p class="text-sm text-slate-400 mt-1">Fiserv (Sitef), Adiq</p>
+                            </div>
+                            <div class="glass p-5 rounded-xl border-l-2 border-l-brand-green border-r border-y border-r-slate-700 border-y-slate-700">
+                                <h4 class="font-semibold text-white">Operadoras & APIs de Transação</h4>
+                                <p class="text-sm text-slate-400 mt-1">MVPay v3 (Moving)</p>
+                            </div>
+                            <div class="glass p-5 rounded-xl border-l-2 border-l-purple-500 border-r border-y border-r-slate-700 border-y-slate-700">
+                                <h4 class="font-semibold text-white">Bancos e Gateways</h4>
+                                <p class="text-sm text-slate-400 mt-1">Sicoob, BS2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-12">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <span class="text-xl font-bold tracking-tight text-brand-blue block mb-2">GL.</span>
+                <p class="text-sm text-slate-500 dark:text-slate-400">© 2026 Guilherme Silva de Lira. Todos os direitos reservados.</p>
+            </div>
+            <div class="flex items-center gap-4 text-slate-500">
+                <a href="https://www.linkedin.com/in/guilhermeslira" target="_blank" class="hover:text-brand-blue transition-colors p-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+                <a href="https://github.com/guilhermeslira" target="_blank" class="hover:text-slate-900 dark:hover:text-white transition-colors p-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></a>
+                <a href="mailto:lirag@hotmail.com" class="hover:text-brand-blue transition-colors p-2"><i data-lucide="mail" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        function toggleTheme() {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                htmlElement.classList.add('light');
+            } else {
+                htmlElement.classList.remove('light');
+                htmlElement.classList.add('dark');
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
